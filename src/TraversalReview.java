@@ -61,8 +61,8 @@ public class TraversalReview {
      */
     public static int positiveSum(TreeNode node) {
         if (node == null) return 0;
-        
         if (node.data < 0) node.data = 0;
+        
         int sum = 0;
 
         if (node.data > 0) {
@@ -97,7 +97,25 @@ public class TraversalReview {
      * @return
      */
     public static int evenMax(TreeNode node) {
-        return Integer.MIN_VALUE;
+        if (node == null) return Integer.MIN_VALUE;
+
+        if (node.data % 2 != 0) {
+            node.data = Integer.MIN_VALUE;
+        }
+
+        int max = node.data;
+        int left = evenMax(node.left);
+        int right = evenMax(node.right);
+
+        if (left > max) {
+            max = left;
+        }
+
+        if (right > max) {
+            max = right;
+        }
+
+        return max;
     }
 
     /**
